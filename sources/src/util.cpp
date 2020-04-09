@@ -23,7 +23,9 @@ If not, see <http://www.gnu.org/licenses/>.
 #else
     #include <unistd.h>
     #include <sys/time.h>
-    #include <wordexp.h>
+    #ifndef ANDROID
+        #include <wordexp.h>
+    #endif
 #endif
 
 #include "rodent.h"
@@ -241,6 +243,9 @@ void PrintOverrides() {
         printf("info string override for personalities path: '%s'\n", ptr);
 }
 bool ChDirEnv(const char *env_name) {
+#ifdef ANDROID
+    return false;
+#else
     char *env_path;
     env_path = getenv(env_name);
     if (env_path == NULL) return false;
@@ -264,6 +269,7 @@ bool ChDirEnv(const char *env_name) {
     wordfree(&p);
 
     return result;
+#endif
 }
 // constexpr for detecting relative paths
 constexpr bool relative = _BOOKSPATH[0] != '/' || _PERSONALITIESPATH[0] != '/';
