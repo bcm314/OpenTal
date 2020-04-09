@@ -36,7 +36,7 @@ sInternalBook InternalBook;
 
 void PrintVersion() {
 
-    printf("id OpenTal 1.1"
+    printf("id name OpenTal 1.1"
 
 #if !(defined(_WIN64) || defined(__x86_64__))
             " 32-bit"
