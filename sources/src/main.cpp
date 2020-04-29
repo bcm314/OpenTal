@@ -38,6 +38,7 @@ void PrintVersion() {
 
     printf("id name OpenTal 1.1"
 
+#ifdef DEBUG
 #if !(defined(_WIN64) || defined(__x86_64__))
             " 32-bit"
 #else
@@ -63,6 +64,7 @@ void PrintVersion() {
             " POPCNT"
 #elif defined(__GNUC__) && defined(__SSSE3__) // we are using custom SSSE3 popcount implementation
             " SSSE3"
+#endif
 #endif
 
                         "\n");
